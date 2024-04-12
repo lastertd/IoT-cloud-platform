@@ -1,0 +1,30 @@
+{
+  "name": "nuxt-plugin-filter",
+  "version": "1.0.1",
+  "description": "能够对页面进行一些过滤",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "release": "npm run lint && npm run test && npm run prepack",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix  --ignore-path .eslintignore",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  }
+}
