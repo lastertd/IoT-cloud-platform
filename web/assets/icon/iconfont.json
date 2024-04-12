@@ -1,0 +1,93 @@
+{
+  "id": "4452210",
+  "name": "metaapp",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon--",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7239484",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e6f6",
+      "unicode_decimal": 59126
+    },
+    {
+      "icon_id": "26102121",
+      "name": "收起",
+      "font_class": "fold",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "15907696",
+      "name": "add",
+      "font_class": "add",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "39493724",
+      "name": "play",
+      "font_class": "play",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "20797371",
+      "name": "下滑三角",
+      "font_class": "tg-top-1",
+      "unicode": "e6c8",
+      "unicode_decimal": 59080
+    },
+    {
+      "icon_id": "36882125",
+      "name": "收起三角-copy",
+      "font_class": "tg-top-2",
+      "unicode": "ee4a",
+      "unicode_decimal": 61002
+    },
+    {
+      "icon_id": "36882126",
+      "name": "下滑三角-copy",
+      "font_class": "tg-right-1",
+      "unicode": "ee4b",
+      "unicode_decimal": 61003
+    },
+    {
+      "icon_id": "36882127",
+      "name": "收起三角-copy-copy",
+      "font_class": "tg-right-2",
+      "unicode": "ee4c",
+      "unicode_decimal": 61004
+    },
+    {
+      "icon_id": "36882131",
+      "name": "下滑三角-copy",
+      "font_class": "tg-bottom-1",
+      "unicode": "ee4e",
+      "unicode_decimal": 61006
+    },
+    {
+      "icon_id": "36882132",
+      "name": "下滑三角-copy",
+      "font_class": "tg-left-1",
+      "unicode": "ee4f",
+      "unicode_decimal": 61007
+    },
+    {
+      "icon_id": "36882133",
+      "name": "收起三角-copy-copy",
+      "font_class": "tg-bottom-2",
+      "unicode": "ee50",
+      "unicode_decimal": 61008
+    },
+    {
+      "icon_id": "36882134",
+      "name": "收起三角-copy-copy",
+      "font_class": "tg-left-2",
+      "unicode": "ee51",
+      "unicode_decimal": 61009
+    }
+  ]
+}

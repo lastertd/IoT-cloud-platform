@@ -1,0 +1,21 @@
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': rgb(0,0,0),
+    ),
+  ),
+);
+
+//@use "element-plus/theme-chalk/src/index" as *;
+@use "element-plus/dist/index.css" as * ;
+
+
+:root {
+  --el-color-primary: #000;
+  --el-color-primary-light-3: #313030;
+  --el-color-primary-light-5: gray;
+  --el-color-primary-light-7: #b3b3b3;
+  --el-color-primary-light-8: #ccc;
+  --el-color-primary-light-9: #f3f1f1;
+  --el-color-primary-dark-2: #000000;
+}
