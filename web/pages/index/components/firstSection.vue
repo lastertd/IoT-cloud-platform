@@ -1,20 +1,31 @@
 <template>
-  <section class="h-screen px-48 py-20">
+  <section>
     <div class="flex justify-between pr-48 items-center">
       <div>
         <h1 class="text-primary text-5xl leading-tight font-bold">{{ appName }}</h1>
         <p class="text-5xl text-slate-900 leading-tight font-bold">绝缘子物联网云平台</p>
-        <p class="text-3xl leading-tight text-black text-opacity-50 font-bold mt-2">test 测试</p>
+        <p class="text-2xl text-black text-opacity-50 font-bold mt-2 max-w-xl">
+          {{ appName }}
+          数据采集、实时控制、数据可视化、零代码应用开发、开放 API，构建灵活强大的物联网应用。
+        </p>
         <div class="flex pt-4">
           <el-button type="primary" round size="large">登录/注册</el-button>
           <el-button type="primary" plain round size="large">开始探索之旅</el-button>
         </div>
       </div>
-      <img src="/public/favicon.ico" alt="" class="rounded-2xl" style="height: 240px" />
+      <div class="relative flex-shrink-0">
+        <div class="img-bg" style="height: 260px; width: 260px"></div>
+        <img
+          src="/public/favicon.ico"
+          alt=""
+          class="rounded-2xl w-full h-ful relative"
+          style="height: 240px; width: 240px"
+        />
+      </div>
     </div>
-    <div class="w-full mt-10 flex flex-wrap gap-y-2">
+    <div class="w-full mt-20 flex flex-wrap gap-y-2">
       <template v-for="data in dataList" :key="data.title">
-        <div class="basis-1/3">
+        <div ref="testRef" class="basis-1/3">
           <div
             class="h-44 mx-1 bg-black bg-opacity-5 rounded-xl border border-gray-200 p-6 space-y-1"
           >
@@ -32,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-const appName = inject("appName") as ref<string>;
+const appName = inject("appName") as Ref<string>;
 
 const dataList = ref<{ icon: string; title: string; info: string }[]>([
   {
@@ -61,6 +72,21 @@ const dataList = ref<{ icon: string; title: string; info: string }[]>([
     info: "支持数据上传并存储"
   }
 ]);
+
+const testRef = ref<HTMLDivElement[]>([]);
+
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.img-bg {
+  @apply rounded-full;
+  @apply absolute top-0 left-0;
+
+  filter: blur(72px);
+  background-image: linear-gradient(
+    15deg,
+    var(--el-color-primary) 65%,
+    var(--el-color-primary) 30%
+  );
+}
+</style>

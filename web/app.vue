@@ -1,12 +1,12 @@
 <template>
-  <div class="min-h-screen set-bg">
+  <div class="min-h-screen set-bg flex flex-col">
     <app-header />
 
-    <div class="flex">
+    <div class="flex flex-1">
       <app-asider />
 
       <div class="flex-1 flex flex-col">
-        <el-main class="flex-1">
+        <el-main class="flex-1" :class="{ 'px-40 py-20': router.currentRoute.value.meta.main }">
           <NuxtLayout>
             <NuxtPage />
           </NuxtLayout>

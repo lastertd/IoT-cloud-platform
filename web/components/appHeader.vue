@@ -13,10 +13,10 @@
         :ellipsis="false"
         @select="handleClick"
       >
-        <el-menu-item class="rounded" index="首页">首页</el-menu-item>
-        <el-menu-item class="rounded" index="开发者文档">开发者文档</el-menu-item>
-        <el-menu-item class="rounded" index="联系我们">联系我们</el-menu-item>
-        <el-menu-item class="rounded" index="登录/注册">登录/注册</el-menu-item>
+        <el-menu-item class="rounded" index="1">首页</el-menu-item>
+        <el-menu-item class="rounded" index="2">开发者文档</el-menu-item>
+        <el-menu-item class="rounded" index="3">联系我们</el-menu-item>
+        <el-menu-item class="rounded" index="4">登录/注册</el-menu-item>
       </el-menu>
       <i class="iconfont icon--github px-4" />
       <el-switch
@@ -45,20 +45,46 @@ const appName = inject("appName") as Ref<string>;
  * @description 导航栏点击
  */
 const handleClick = (idx: string) => {
-  console.log(idx, typeof idx);
-
-  if (idx === "首页") {
+  if (idx === "1") {
     router.push("/");
     return;
   }
 
-  if (idx === "开发者文档") {
+  if (idx === "2") {
     router.push("/docs");
+    return;
+  }
+
+  if (idx === "3") {
+    // router.push("/docs");
+    return;
+  }
+
+  if (idx === "4") {
+    router.push("/login");
+    return;
   }
 };
 
 onMounted(() => {
-  activeTab.value = router.currentRoute.value.meta.name ?? "首页";
+  const path = router.currentRoute.value.path;
+
+  if (path === "/") {
+    activeTab.value = "1";
+    return;
+  }
+
+  if (path.includes("/docs")) {
+    activeTab.value = "2";
+    return;
+  }
+
+  if (path.includes("/user")) {
+    activeTab.value = "4";
+    return;
+  }
+
+  activeTab.value = "1";
 });
 </script>
 

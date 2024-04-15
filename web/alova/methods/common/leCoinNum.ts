@@ -7,7 +7,6 @@ export interface leCoinNumApiOption {
   coinType: number;
 }
 
-console.log();
 
 export interface leCoinNumApiResult
   extends ResponseType<{

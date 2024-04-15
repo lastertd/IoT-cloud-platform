@@ -2,7 +2,7 @@
   <el-footer v-show="router.currentRoute.value.meta.footer" class="app-footer">
     <div class="text-gray-600 flex flex-col items-center">
       <p>Released under the MIT License.</p>
-      <p>Copyright © 2024-present {{ appName }}</p>
+      <p>Copyright © 2024-present Laster</p>
     </div>
   </el-footer>
 </template>

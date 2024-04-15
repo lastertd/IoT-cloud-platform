@@ -3,7 +3,7 @@ const config233 = defineNuxtConfig({
   devtools: { enabled: false },
   // @ts-ignore
   modules: ["@nuxtjs/tailwindcss", "@vueuse/nuxt", "nuxt-plugin-filter", "@element-plus/nuxt"],
-  pageFilter: { regs: [/\/types\//, /\/css\//, /\/components\//] },
+  pageFilter: { regs: [/\/types\//, /\/css\//, /\/src\//, /\/components\//] },
   elementPlus: {
     importStyle: false
   },
