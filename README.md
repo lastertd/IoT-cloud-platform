@@ -26,3 +26,13 @@
 ## files -> web
 
 web端代码
+
+技术栈: vue3、nuxt3、element plus、tailwind css、vueuse...
+
+## files -> serve
+
+后端代码
+
+技术栈: nest.js
+
+
