@@ -1,14 +1,17 @@
 import "reflect-metadata";
 import { DataSourceOptions } from "typeorm/data-source/DataSourceOptions";
 import { User } from "@/repository/entity";
+import { getConfig } from "@/utils";
+
+const config = getConfig();
 
 export const appDataBaseConfig: DataSourceOptions = {
   type: "mysql",
-  host: "localhost",
-  port: 3306,
-  username: "root",
-  password: "last8872287a",
-  database: "gra",
+  host: config.mysql.host,
+  port: config.mysql.port,
+  username: config.mysql.username,
+  password: config.mysql.password,
+  database: config.mysql.database,
   synchronize: true,
   logging: false,
   entities: [User],

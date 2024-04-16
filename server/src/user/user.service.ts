@@ -1,10 +1,15 @@
-import { HttpException, Inject, Injectable, Logger } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotAcceptableException
+} from "@nestjs/common";
 import { LoginDto, RegisterDto } from "./dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import * as crypto from "crypto";
 import { User } from "@/repository/entity";
-import { JwtService } from "@nestjs/jwt";
 
 /**
  * @description 生成盐值
@@ -44,7 +49,7 @@ export class UserService {
       name: user.name
     });
     if (isNameExist) {
-      return new HttpException("用户已存在", 200);
+      throw new BadRequestException("用户已存在");
     }
 
     // 邮箱已存在
@@ -52,7 +57,7 @@ export class UserService {
       contact: user.contact
     });
     if (isContactExist) {
-      throw new HttpException("邮箱已被注册", 200);
+      throw new BadRequestException("邮箱已被注册");
     }
 
     // 新建用户
@@ -63,17 +68,14 @@ export class UserService {
 
     try {
       await this.userRepository.save(newUser);
-      return new HttpException("注册成功", 200);
+      return "注册成功";
     } catch (e) {
       this.logger.error(e, UserService);
-      return new HttpException("注册失败", 200);
+      new InternalServerErrorException("注册失败");
     }
   }
 
   async login(user: LoginDto) {
-
-    console.log(user, "web user");
-
     const foundUser = await this.userRepository.findOneBy([
       {
         name: user.contactOrName
@@ -84,11 +86,11 @@ export class UserService {
     ]);
 
     if (!foundUser) {
-      throw new HttpException("用户不存在", 200);
+      throw new NotAcceptableException("用户不存在, 请先注册");
     }
 
     if (foundUser.password !== generatePassword(user.password, foundUser.salt)) {
-      throw new HttpException("账户密码不匹配", 200);
+      throw new NotAcceptableException("账户密码不匹配, 请重新输入");
     }
     return foundUser;
   }

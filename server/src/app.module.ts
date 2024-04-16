@@ -1,24 +1,26 @@
 import { Module } from "@nestjs/common";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserModule } from "./user/user.module";
 import appDataBaseConfig from "../repository/data-source";
 import { JwtModule } from "@nestjs/jwt";
+import { getConfig } from "@/utils";
+import { ConfigModule } from "@nestjs/config";
+
+const config = getConfig();
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(appDataBaseConfig),
     JwtModule.register({
       global: true,
-      secret: "laster_xin_~_~",
-      signOptions: {
-        expiresIn: "7d"
-      }
+      ...config.jwt
+    }),
+    ConfigModule.forRoot({
+      ignoreEnvFile: false,
+      isGlobal: true,
+      load: [getConfig]
     }),
     UserModule
-  ],
-  controllers: [AppController],
-  providers: [AppService]
+  ]
 })
 export class AppModule {}
