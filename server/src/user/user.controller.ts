@@ -1,31 +1,42 @@
 import {
-  Controller,
-  Post,
   Body,
-  Inject,
-  Res,
-  HttpException,
+  Controller,
   Get,
+  HttpException,
+  Inject,
+  Post,
+  Query,
+  Res,
   UseGuards,
-  ValidationPipe, UseFilters
+  ValidationPipe
 } from "@nestjs/common";
 import { UserService } from "./user.service";
-import { LoginDto, RegisterDto } from "./dto";
+import { LoginDto, RegisterDto, ValidateDto } from "./dto";
 import { JwtService } from "@nestjs/jwt";
 import { Response } from "express";
 import { LoginGuard } from "@/guard";
-import { IntegrateFilter } from "@/filter";
+import { EmailService } from "@/src/email/email.service";
+import { User } from "@/repository/entity";
 
 @Controller("user")
 export class UserController {
   @Inject(JwtService)
   private jwtService: JwtService;
 
+  @Inject(EmailService)
+  private emailService: EmailService;
+
   constructor(private readonly userService: UserService) {}
 
   @Post("register")
   async register(@Body(ValidationPipe) user: RegisterDto) {
-    return this.userService.register(user);
+    const res = await this.userService.register(user);
+
+    if (res instanceof User) {
+      this.emailService.validateSend(res).catch();
+
+      return "注册成功";
+    }
   }
 
   @Post("login")
@@ -45,9 +56,16 @@ export class UserController {
     throw new HttpException("server error ", 400);
   }
 
+  @Get("/validate")
+  async validate(@Query(ValidationPipe) query: ValidateDto) {
+    return await this.userService.validate(query);
+  }
+
   @Get("test")
   @UseGuards(LoginGuard)
-  test() {
+  async test() {
+    await this.emailService.testSend();
+
     return "111";
   }
 }

@@ -3,6 +3,11 @@ import * as path from "path";
 import * as fs from "fs";
 import { parse } from "yaml";
 
+export interface WebOptions {
+  host: string;
+  port: number;
+}
+
 export interface ServerOptions {
   host: string;
   port: number;
@@ -23,10 +28,23 @@ export interface jwtOptions {
   };
 }
 
+export interface EmailOptions {
+  host: string;
+  port: number;
+  ignoreTLS: boolean;
+  secure: boolean;
+  auth: {
+    user: string;
+    pass: string;
+  };
+}
+
 export interface Config {
   server: ServerOptions;
   mysql: DatabaseOptions;
   jwt: jwtOptions;
+  web: WebOptions;
+  email: EmailOptions;
 }
 
 export const getEnv = () => {

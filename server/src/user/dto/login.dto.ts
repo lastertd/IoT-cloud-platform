@@ -1,11 +1,12 @@
 import { IsNotEmpty, IsString } from "class-validator";
+import { User } from "@/repository/entity";
 
 export class LoginDto {
   @IsNotEmpty()
   @IsString()
-  contactOrName: string;
+  contactOrName: User["contact"] | User["name"];
 
   @IsNotEmpty()
   @IsString()
-  password: string;
+  password: User["password"];
 }

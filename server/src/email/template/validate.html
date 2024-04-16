@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Chtholly</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <style>
+      .echo-outer {
+          margin: 0 auto;
+          max-width: 604px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 1.5rem 0;
+      }
+
+      .echo-box {
+          width: 100%;
+          min-height: 100px;
+          background: white;
+          border-radius: .5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+      }
+
+      .echo-title {
+          margin: 0;
+          padding: 12px;
+          font-family: Poppins, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+          font-size: 20px;
+          font-weight: bold;
+          line-height: 1;
+          text-align: center;
+          color: #000000;
+      }
+
+      .echo-text {
+          width: 100%;
+          font-family: Poppins, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+          font-size: 13px;
+          line-height: 20px;
+          text-align: left;
+          color: #000000;
+      }
+
+      .echo-info {
+          font-size: 12px;
+          line-height: 24px;
+          margin: 0;
+          font-family: Poppins, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+          text-align: center;
+          color: #99AAB5;
+      }
+
+      .echo-divider {
+          width: 100%;
+          margin: 20px 0;
+          border-bottom: solid 1px #ece6e6;
+      }
+
+      .echo-button {
+          display: inline-flex;
+          align-items: center;
+          background: black;
+          color: white;
+          font-family: Poppins, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif !important;
+          font-size: 13px;
+          font-weight: 600;
+          line-height: 16px;
+          margin: 0;
+          text-decoration: none;
+          text-transform: none;
+          padding: 8px 18px;
+          mso-padding-alt: 0px;
+          border-radius: 30px;
+      }
+
+
+  </style>
+</head>
+<body tabindex="0">
+<div style="word-spacing:normal;background-color:#F9F9F9;">
+  <div class="echo-outer">
+    <div style="display: flex;justify-content: center;align-items: center;margin-bottom: 20px">
+      <img src="https://pic.imgdb.cn/item/661e91ec0ea9cb1403912e49.png" alt="icon"
+           style="width: 28px;border-radius: 5px;margin-right: 10px">
+      <h1 class="echo-title">Chtholly</h1>
+    </div>
+    <div class="echo-box">
+      <img src="https://pic.imgdb.cn/item/661e94da0ea9cb1403a70c19.png" alt="" style="width: 25%">
+      <h1 class="echo-title">邮箱验证</h1>
+
+      <div class="echo-divider"></div>
+      <p class="echo-text" style="text-align: left">
+        您的账户注册了本站app, 为了验证这是您的真实邮箱，请前往
+        <a href="{{webUrlValidate}}" style="text-decoration: none;font-weight: bold" target="_blank">验证网址</a>
+        验证您的邮箱。<br>
+        链接在5分钟之内有效。 <br>
+        如果这不是您本人的操作，请忽略此邮件。<br>
+      </p>
+
+      <div class="echo-divider"></div>
+      <div style="width: 100%;display: flex;justify-content: space-between; ">
+        <img src="https://pic.imgdb.cn/item/661e91ec0ea9cb1403912e49.png" alt="icon"
+             style="width: 40px;height: 40px; border-radius: 50%;margin-right: 10px;flex-shrink: 0">
+        <h1 class="echo-title">链接不生效？请点击按钮前往验证</h1>
+        <a class="echo-button" href="{{webUrlValidate}}">点击前往验证</a>
+      </div>
+
+    </div>
+    <p class="echo-info" style="margin-top: 40px">
+      由Chtholly发送 <a style="text-decoration: none" href="{{webUrlDocs}}">&nbsp;•&nbsp;查看我们的博客&nbsp;•&nbsp;@Chtholly</a>
+    </p>
+    <p class="echo-info">
+      此邮件发送于{{ time }}
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

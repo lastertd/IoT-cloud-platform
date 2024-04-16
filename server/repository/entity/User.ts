@@ -9,7 +9,7 @@ import {
 @Entity()
 export class User {
   @PrimaryGeneratedColumn("uuid")
-  uid: number;
+  uid: string;
 
   @Column()
   name: string;
@@ -41,4 +41,10 @@ export class User {
     comment: "更新时间"
   })
   updateTime: Date;
+
+  @Column({
+    comment: "是否经过验证",
+    default: false
+  })
+  isVerified: boolean;
 }

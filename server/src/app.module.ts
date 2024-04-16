@@ -5,8 +5,13 @@ import appDataBaseConfig from "../repository/data-source";
 import { JwtModule } from "@nestjs/jwt";
 import { getConfig } from "@/utils";
 import { ConfigModule } from "@nestjs/config";
+import { MailerModule } from "@nestjs-modules/mailer";
+import { PugAdapter } from "@nestjs-modules/mailer/dist/adapters/pug.adapter";
+import { EmailModule } from "./email/email.module";
 
 const config = getConfig();
+
+console.log(config.email);
 
 @Module({
   imports: [
@@ -20,7 +25,22 @@ const config = getConfig();
       isGlobal: true,
       load: [getConfig]
     }),
-    UserModule
+    MailerModule.forRoot({
+      transport: config.email,
+      defaults: {
+        from: "未设置主题"
+      },
+      preview: false,
+      template: {
+        dir: process.cwd() + "/template/",
+        adapter: new PugAdapter(), // or new PugAdapter() or new EjsAdapter()
+        options: {
+          strict: true
+        }
+      }
+    }),
+    UserModule,
+    EmailModule
   ]
 })
 export class AppModule {}
