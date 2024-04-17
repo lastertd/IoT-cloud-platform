@@ -3,8 +3,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  ManyToOne,
+  OneToMany
 } from "typeorm";
+import { Group } from "@/repository/entity/Group";
 
 @Entity()
 export class User {
@@ -32,6 +35,18 @@ export class User {
   })
   salt: string;
 
+  @Column({
+    comment: "是否经过验证",
+    default: false
+  })
+  isVerified: boolean;
+
+  @Column({
+    comment: "分组的最大数量",
+    default: 5
+  })
+  limit: number;
+
   @CreateDateColumn({
     comment: "创建时间"
   })
@@ -42,9 +57,9 @@ export class User {
   })
   updateTime: Date;
 
-  @Column({
-    comment: "是否经过验证",
-    default: false
+  @OneToMany(() => Group, (group) => group.user, {
+    cascade: true,
+    nullable: false
   })
-  isVerified: boolean;
+  group: Group[];
 }

@@ -8,6 +8,8 @@ import { ConfigModule } from "@nestjs/config";
 import { MailerModule } from "@nestjs-modules/mailer";
 import { PugAdapter } from "@nestjs-modules/mailer/dist/adapters/pug.adapter";
 import { EmailModule } from "./email/email.module";
+import { GroupModule } from "./group/group.module";
+import { CommonModule } from "./common/common.module";
 
 const config = getConfig();
 
@@ -40,7 +42,9 @@ console.log(config.email);
       }
     }),
     UserModule,
-    EmailModule
+    EmailModule,
+    GroupModule,
+    CommonModule
   ]
 })
 export class AppModule {}

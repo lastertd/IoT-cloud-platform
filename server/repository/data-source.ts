@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { DataSourceOptions } from "typeorm/data-source/DataSourceOptions";
-import { User } from "@/repository/entity";
+import { Group, User } from "@/repository/entity";
 import { getConfig } from "@/utils";
 
 const config = getConfig();
@@ -14,7 +14,7 @@ export const appDataBaseConfig: DataSourceOptions = {
   database: config.mysql.database,
   synchronize: true,
   logging: false,
-  entities: [User],
+  entities: [User, Group],
   migrations: [],
   subscribers: [],
   connectorPackage: "mysql2",

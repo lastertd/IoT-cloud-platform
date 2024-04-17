@@ -14,9 +14,9 @@ import { UserService } from "./user.service";
 import { LoginDto, RegisterDto, ValidateDto } from "./dto";
 import { JwtService } from "@nestjs/jwt";
 import { Response } from "express";
-import { LoginGuard } from "@/guard";
 import { EmailService } from "@/src/email/email.service";
 import { User } from "@/repository/entity";
+import { LoginGuard } from "@/src/guard";
 
 @Controller("user")
 export class UserController {

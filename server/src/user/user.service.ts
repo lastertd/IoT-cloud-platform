@@ -55,6 +55,18 @@ export class UserService {
     return !!isNameExist;
   }
 
+  async findOneByUid(uid: User["uid"]) {
+    const user = await this.userRepository.findOneBy({
+      uid
+    });
+
+    if (isEmpty(user)) {
+      throw new BadRequestException("用户不存在");
+    }
+
+    return user;
+  }
+
   async register(user: RegisterDto) {
     // 用户名已存在
     const isNameExist = await this.isNameExist(user.name);
