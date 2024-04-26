@@ -63,6 +63,15 @@ body {
 
 }
 
+/* 通用的自动补全样式 */
+input:-webkit-autofill,
+input:-moz-placeholder,
+input:-moz-placeholder,
+input:-ms-input-placeholder,
+input::-ms-input-placeholder {
+  background-color: transparent !important;
+}
+
 
 @font-face {
   font-family: "PingFang SC";

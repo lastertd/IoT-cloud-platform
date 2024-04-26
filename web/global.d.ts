@@ -8,6 +8,12 @@ declare global {
     pandoraInstance: any;
     ___is__client: boolean;
   }
+
+  interface ImportMeta {
+    env: {
+      [k: string]: unknown;
+    };
+  }
 }
 
 export {};

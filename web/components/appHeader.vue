@@ -1,6 +1,6 @@
 <template>
   <el-header v-show="router.currentRoute.value.meta.header" class="app-header">
-    <div class="flex items-center space-x-2">
+    <div class="flex items-center space-x-2 select-none" @click="gotoMainFn">
       <img src="/public/favicon.ico" alt="" style="width: 1.75rem" class="rounded" />
       <div class="font-dc text-xl font-bold text-black">{{ appName }}</div>
     </div>
@@ -8,7 +8,7 @@
     <div class="flex items-center select-none">
       <el-menu
         :default-active="activeTab"
-        class="el-menu-demo bg-transparent"
+        class="bg-transparent"
         mode="horizontal"
         :ellipsis="false"
         @select="handleClick"
@@ -17,8 +17,9 @@
         <el-menu-item class="rounded" index="2">开发者文档</el-menu-item>
         <el-menu-item class="rounded" index="3">联系我们</el-menu-item>
         <el-menu-item class="rounded" index="4">登录/注册</el-menu-item>
+        <el-menu-item class="rounded" index="5">控制台</el-menu-item>
       </el-menu>
-      <i class="iconfont icon--github px-4" />
+      <i class="iconfont icon--github px-4" @click="goToGithubFn" />
       <el-switch
         v-model="isBlack"
         class="px-4"
@@ -40,6 +41,15 @@ const activeTab = ref("首页");
 const isBlack = ref(false);
 
 const appName = inject("appName") as Ref<string>;
+
+
+
+const gotoMainFn = () => {
+  navManager.push("/");
+};
+const goToGithubFn = () => {
+  window.open("https://github.com/lastertd/IoT-cloud-platform", "_blank");
+};
 
 /**
  * @description 导航栏点击
@@ -64,6 +74,10 @@ const handleClick = (idx: string) => {
     router.push("/login");
     return;
   }
+  if (idx === "5") {
+    router.push("/console");
+    return;
+  }
 };
 
 onMounted(() => {
@@ -81,6 +95,10 @@ onMounted(() => {
 
   if (path.includes("/user")) {
     activeTab.value = "4";
+    return;
+  }
+  if (path.includes("/console")) {
+    activeTab.value = "5";
     return;
   }
 

@@ -1,5 +1,5 @@
 /** 任意函数 */
-export type AnyFunction = (...args: any[]) => any;
+export type AnyFunction<T = unknown> = (...args: any[]) => T;
 
 /** 构造函数 */
 export type AnyConstructor = new (...args: any[]) => any;

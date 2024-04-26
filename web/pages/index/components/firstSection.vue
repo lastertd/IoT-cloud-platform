@@ -9,8 +9,12 @@
           数据采集、实时控制、数据可视化、零代码应用开发、开放 API，构建灵活强大的物联网应用。
         </p>
         <div class="flex pt-4">
-          <el-button type="primary" round size="large">登录/注册</el-button>
-          <el-button type="primary" plain round size="large">开始探索之旅</el-button>
+          <el-button type="primary" round size="large" @click="navManager.push('/login')"
+            >登录/注册
+          </el-button>
+          <el-button type="primary" plain round size="large" @click="navManager.push('/docs')"
+            >开始探索之旅
+          </el-button>
         </div>
       </div>
       <div class="relative flex-shrink-0">
@@ -74,7 +78,6 @@ const dataList = ref<{ icon: string; title: string; info: string }[]>([
 ]);
 
 const testRef = ref<HTMLDivElement[]>([]);
-
 </script>
 
 <style scoped lang="scss">

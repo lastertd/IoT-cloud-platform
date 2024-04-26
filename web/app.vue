@@ -33,7 +33,7 @@ onMounted(() => {
     title: `Chtholly | ${router.currentRoute.value.meta.name}`
   });
 
-  console.log(router.getRoutes());
+  console.log(router.currentRoute.value);
 });
 </script>
 

@@ -1,95 +1,52 @@
-import { createAlova, type AlovaOptions } from "alova";
+import { createAlova } from "alova";
 import VueHook from "alova/vue";
-import type { FetchRequestInit } from "alova/GlobalFetch";
 import GlobalFetch from "alova/GlobalFetch";
-import { mockAdapter } from "./mocks";
-import type { ResponseType } from "./type";
+import { getConfig } from "@/utils";
+import { type ResponseType } from "@/alova";
 
 /**
  * @description 这里配置请求应该设置的请求头
  */
 const getHeaders = () => {
   return {
-    ...bp(),
-    selfPackageName: "com.meta.box"
+    selfPackageName: "com.meta.box",
+    authorization: JSON.parse(localStorage.getItem("user") ?? "{}").token
   };
 };
 
 /**
- * @deprecated 对于响应的处理不统一
+ * @description 对于响应的处理不统一
  */
 export const alovaInstance = createAlova({
   statesHook: VueHook,
-  requestAdapter: mockAdapter,
-  baseURL: useConfig().baseUrl,
+  requestAdapter: GlobalFetch(),
+  baseURL: getConfig().baseUrl,
   beforeRequest: (method) => {
     Object.assign(method.config.headers, getHeaders());
   },
   responded: {
     onSuccess: async (response, method) => {
-      if (response.status >= 300 || response.status < 200) {
-        const res = `网络错误: code: ${response.status}; message: ${response.statusText}`;
-        throw new Error(res);
-      }
-      const body = await response.json();
-      if (body.status === 200) {
-        return body.body;
-      }
-      return body;
-    },
-    onError: (error) => {
-      throw error;
-    }
-  }
-});
-
-const respondedDeal: AlovaOptions<
-  globalThis.Ref<unknown>,
-  globalThis.Ref<unknown>,
-  FetchRequestInit,
-  Response,
-  Headers
-> = {
-  statesHook: VueHook,
-  requestAdapter: useConfig().mode === "development" ? mockAdapter : GlobalFetch(),
-  baseURL: useConfig().baseUrl,
-  beforeRequest: (method) => {
-    Object.assign(method.config.headers, getHeaders());
-  },
-  responded: {
-    onSuccess: async (response, method) => {
-      if (method.meta?.resAll === true) {
-        return response;
-      }
-
-      // 以下为业务相关
-      if (response.status >= 300 || response.status < 200) {
-        const res = `网络错误: code: ${response.status}; message: ${response.statusText}`;
-        throw new Error(res);
-      }
-
       const data = await response.json();
       const resData = data as ResponseType<any>;
 
-      if (method.meta?.resBussines === true) {
-        return resData;
+      // solve popup
+      if (method.meta?.popupAuth) {
+        if (response.status >= 300 || response.status < 200) {
+          ElNotification({
+            title: "title",
+            message: resData.message,
+            type: method.meta?.popupType ?? "warning",
+            offset: 50
+          });
+
+          // throw new Error(resData.message);
+        }
       }
 
-      if (resData.code !== 200) {
-        console.warn("这里可以加入弹窗提醒");
-        throw new Error(resData.message);
-      }
-
-      return resData.data;
+      return resData;
     },
     onError: (error) => {
       throw error;
     }
   }
-};
-
-export const alovaBase = createAlova(respondedDeal);
-export const alovaTest = createAlova({
-  ...respondedDeal,
-  baseURL: "https://test1010-api.233lyly.com/"
 });

@@ -23,6 +23,54 @@
       ],
       "@/*": [
         "./*"
+      ],
+      "@server": [
+        "apps/server"
+      ],
+      "@server/*": [
+        "apps/server/*"
+      ],
+      "@lib/email": [
+        "libs/email/src"
+      ],
+      "@lib/email/*": [
+        "libs/email/src/*"
+      ],
+      "@lib/common": [
+        "libs/common/src"
+      ],
+      "@lib/common/*": [
+        "libs/common/src/*"
+      ],
+      "@lib/repository": [
+        "libs/repository/src"
+      ],
+      "@lib/repository/*": [
+        "libs/repository/src/*"
+      ],
+      "@lib/devices": [
+        "libs/devices/src"
+      ],
+      "@lib/devices/*": [
+        "libs/devices/src/*"
+      ],
+      "@lib/msg": [
+        "libs/msg/src"
+      ],
+      "@lib/msg/*": [
+        "libs/msg/src/*"
+      ],
+      "@lib/group": [
+        "libs/group/src"
+      ],
+      "@lib/group/*": [
+        "libs/group/src/*"
+      ],
+      "@lib/user": [
+        "libs/user/src"
+      ],
+      "@lib/user/*": [
+        "libs/user/src/*"
       ]
     }
   }

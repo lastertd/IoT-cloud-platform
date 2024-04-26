@@ -12,7 +12,7 @@
 definePageMeta({
   name: "开发者文档",
   header: true,
-  aside: true,
+  asider: true,
   footer: true
 });
 </script>

@@ -6,18 +6,6 @@ module.exports = {
     "import/named": "off",
     "prettier/prettier": "warn",
     "@typescript-eslint/no-unused-vars": "off",
-    "require-jsdoc": [
-      "error",
-      {
-        require: {
-          FunctionDeclaration: true,
-          MethodDefinition: true,
-          ClassDeclaration: true,
-          ArrowFunctionExpression: true,
-          FunctionExpression: true
-        }
-      }
-    ],
     "no-console": "off"
   },
   overrides: [

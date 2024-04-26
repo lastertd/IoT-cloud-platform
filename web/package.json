@@ -1,13 +1,13 @@
 {
   "name": "admin-template-test",
-  "owner": "yuechao.xu",
+  "owner": "laster",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --dotenv ./envs/.env.http.test",
+    "dev": "nuxt dev --dotenv ./envs/.env.dev",
     "docker:build": "nuxt generate --dotenv ./envs/.env.http.prod",
-    "docker:build:http-test": "nuxt generate --dotenv ./envs/.env.http.test",
+    "docker:build:http-test": "nuxt generate --dotenv envs/.env.dev",
     "docker:build:http-pre": "nuxt generate --dotenv ./envs/.env.http.pre",
     "docker:build:http-prod": "nuxt generate --dotenv ./envs/.env.http.prod",
     "test": "crs er -s=-test",
@@ -21,6 +21,7 @@
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/tailwindcss": "^6.10.4",
+    "dotenv": "^16.4.5",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
@@ -28,7 +29,6 @@
     "lint-staged": "^15.2.1",
     "nuxt-plugin-filter": "^1.0.1",
     "postcss": "^8.4.33",
-    "postcss-pxtorem": "^6.1.0",
     "prettier": "^3.2.2",
     "sass": "^1.69.7",
     "typescript": "^5.3.3"
@@ -36,15 +36,17 @@
   "dependencies": {
     "@alova/mock": "^1.5.1",
     "@element-plus/nuxt": "^1.0.8",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
+    "@pinia/nuxt": "^0.5.1",
     "@vueuse/nuxt": "^10.9.0",
     "abortcontroller-polyfill": "^1.7.5",
     "alova": "^2.17.0",
-    "axios": "^1.6.5",
+    "echarts": "^5.5.0",
     "element-plus": "^2.6.3",
     "nuxt": "^3.9.1",
     "tailwindcss": "^3.4.3",
-    "vconsole": "^3.15.1",
     "vue": "^3.4.10",
+    "vue-echarts": "^6.7.1",
     "vue-router": "^4.2.5"
   }
 }
