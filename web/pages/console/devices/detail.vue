@@ -24,7 +24,17 @@
       <p>无警告</p>
     </div>
   </div>
-  <el-menu :default-active="activeTab" class="devices-menu" mode="horizontal" :ellipsis="false">
+  <el-menu
+    :default-active="activeTab"
+    class="devices-menu"
+    mode="horizontal"
+    :ellipsis="false"
+    @select="
+      (index) => {
+        activeTab = index;
+      }
+    "
+  >
     <el-menu-item index="1">概览</el-menu-item>
     <el-menu-item index="2">连接</el-menu-item>
     <el-menu-item index="3">属性</el-menu-item>
@@ -33,12 +43,14 @@
     <el-menu-item index="6">设置</el-menu-item>
   </el-menu>
 
-  <detail-main-sec />
+  <detail-msg-sec v-if="activeTab === '3'" />
+  <detail-main-sec v-if="activeTab === '1'" />
 </template>
 
 <script setup lang="ts">
 import { useDevicesStore } from "~/store/devices.store";
 import DetailMainSec from "~/pages/console/devices/components/detail-main-sec.vue";
+import DetailMsgSec from "~/pages/console/devices/components/detail-msg-sec.vue";
 
 definePageMeta({
   name: "控制台 | 设备详情",

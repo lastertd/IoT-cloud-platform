@@ -110,7 +110,11 @@ const chartOptionList = [
         value: 3
       },
       {
-        name: "网关",
+        name: "CoAP",
+        value: 0
+      },
+      {
+        name: "TCP",
         value: 0
       },
       {
@@ -141,15 +145,15 @@ const chartOptionList = [
       },
       {
         name: "1小时内",
-        value: 17
+        value: 0
       },
       {
         name: "1天内",
-        value: 3
+        value: 1
       },
       {
         name: "1天以上",
-        value: 7
+        value: 2
       }
     ]
   }),

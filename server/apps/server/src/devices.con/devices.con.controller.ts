@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Body,
-  UseGuards,
-  ValidationPipe,
-  Post,
-  Param,
-  Query
-} from "@nestjs/common";
+import { Controller, Get, Body, UseGuards, ValidationPipe, Post, Query } from "@nestjs/common";
 import { DevicesService } from "@lib/devices";
 import { LoginGuard } from "@server/src/guard";
 import { Devices, Group } from "@lib/repository";
@@ -31,6 +22,11 @@ export class DevicesConController {
   @Get("/getMsgInfo")
   public async getMsgInfo(@Query("devicesId") devicesId: Devices["id"]) {
     return await this.devicesConService.getMsgInfo(devicesId);
+  }
+
+  @Get("/getMsg")
+  public async getMsg(@Query("devicesId") devicesId: Devices["id"], @Query("page") page: number) {
+    return await this.devicesConService.getAllMsg(devicesId, page);
   }
 
   @Post("/add")

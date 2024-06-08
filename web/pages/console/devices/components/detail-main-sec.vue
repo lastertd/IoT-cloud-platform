@@ -31,7 +31,7 @@
                 class="hover:bg-gray-300 flex justify-center items-center rounded transition-all"
                 style="height: 22px; width: 22px"
               >
-                <el-icon>
+                <el-icon @click="openPopupFn">
                   <ElIconGuide />
                 </el-icon>
               </div>
@@ -49,7 +49,7 @@
           <div class="text-2xl font-roboto font-bold">
             {{ msg?.value }}
           </div>
-          <footer class="flex justify-end text-xs text-gray-500">{{ msg?.createTime }}</footer>
+          <footer class="flex justify-end text-xs text-gray-500">{{ new Date(msg?.createTime).toLocaleString() }}</footer>
         </div>
       </template>
     </div>
@@ -80,6 +80,44 @@
       <v-chart class="rounded shadow" style="height: 400px" :option="option" autoresize></v-chart>
     </client-only>
   </div>
+
+  <el-dialog v-model="isPopupVisible"  style="min-width: 70vw" title="属性时序图表">
+    <div class="w-full flex justify-between">
+      <div class="m-4">
+        <span class="pr-1">选择属性</span>
+        <el-select
+          v-model="value4"
+          multiple
+          collapse-tags
+          collapse-tags-tooltip
+          :max-collapse-tags="3"
+          placeholder="请选择属性"
+          style="width: 220px"
+        >
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </div>
+
+      <div class="m-4 text-2xl space-x-2">
+        <el-icon @click="openPopupFn" class="border p-1 bg-gray-200">
+          <ElIconShare />
+        </el-icon>
+        <el-icon @click="openPopupFn" class="border p-1">
+          <ElIconHistogram />
+        </el-icon>
+        <el-icon @click="openPopupFn" class="border p-1">
+          <ElIconRefresh />
+        </el-icon>
+      </div>
+    </div>
+    <img src="/images/test.png">
+  </el-dialog>
+
 </template>
 
 <script setup lang="ts">
@@ -87,6 +125,7 @@ import { useDevicesStore } from "~/store/devices.store";
 import VChart from "vue-echarts";
 
 const devicesStore = useDevicesStore();
+const isPopupVisible = ref(false);
 
 const option = ref({
   title: {
@@ -111,10 +150,27 @@ const option = ref({
   ]
 });
 
+const value4 = ref([])
+const options = [
+  {
+    value: 'BinFillingDegree',
+    label: '深度',
+  },
+  {
+    value: 'AmmoniaConcentration',
+    label: '二氧化碳浓度',
+  },
+]
+
 const refreshMsgFn = async () => {
   console.log("debug", "refresh");
   await devicesStore.refreshMsgInfo();
 };
+
+const openPopupFn = () => {
+  isPopupVisible.value = true;
+}
+
 </script>
 
 <style scoped lang="scss"></style>

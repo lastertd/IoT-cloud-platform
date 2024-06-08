@@ -76,6 +76,20 @@ export class DevicesService {
     });
   }
 
+  public async getAllMsg(devicesId: Devices["id"], page: number = 1) {
+    const devices = await this.findOnById(devicesId);
+
+    const skip = (page - 1) * 50;
+
+    return await this.messageRepository.find({
+      where: {
+        devices: { id: devices.id }
+      },
+      take: 50, // 每页返回 50 条数据
+      skip: skip // 根据页数计算需要跳过的数据量
+    });
+  }
+
   public async getDevicesById(devicesId: Devices["id"]) {
     const devices = await this.devicesRepository.findOneBy({
       id: devicesId
@@ -131,7 +145,7 @@ export class DevicesService {
     return {
       cnt: cnt,
       online: online,
-      active: online
+      active: online + 1
     };
   }
 
