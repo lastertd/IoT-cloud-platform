@@ -1,8 +1,57 @@
-## files -> filter
+
+
+## project of web
+
+web端代码
+
+技术栈: vue3、nuxt3、element plus、tailwind css、vueuse...
+
+
+
+初始化
+
+ ~~~
+  npm install
+ ~~~
+
+启动项目
+ ~~~
+  npm run dev 
+ ~~~
+
+ps: 注意设置env环境文件
+
+
+## project of server
+
+后端代码
+
+技术栈: nest.js、typerOrm、mysql2、class-validator...
+
+初始化
+
+ ~~~
+  npm install
+ ~~~
+
+启动主项目
+ ~~~
+  npm run dev 
+ ~~~
+启动mqtt微服务
+ ~~~
+  npm run dev  mqtt
+ ~~~
+
+ps: 注意设置env环境文件
+
+## project of test
+
+测试文件
+
+## project of filter
 
 用于nuxt3页面过滤
-
-### 使用方式
 
 1. 安装
 
@@ -23,16 +72,5 @@
     
     ~~~
 
-## files -> web
-
-web端代码
-
-技术栈: vue3、nuxt3、element plus、tailwind css、vueuse...
-
-## files -> serve
-
-后端代码
-
-技术栈: nest.js
 
 
